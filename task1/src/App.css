@@ -1,0 +1,23 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: "center";
+  overflow-y: auto;
+  padding: 48px 0px 48px 0px;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+  background-color: black;
+}
+.score-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 32px;
+  height: 425px;
+  color: white;
+  background-color: black;
+}
