@@ -6,16 +6,15 @@ import { questions } from "./constants/questions/index.js";
 import Question from "./components/question/Question";
 
 function App() {
-  const [remainingTime, setRemainingTime] = useState(3600);
+  const [remainingTime, setRemainingTime] = useState(600);
   const [currentQuestion, setCurrentQuestion] = useState(1);
   const [isSelected, setIsSelected] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(0);
+  // const [selectedOption, setSelectedOption] = useState(0);
   const [answers, setAnswers] = useState({
     1: "",
     2: "",
     3: "",
-    4: "",
   });
   const [total, setTotal] = useState(0);
   useEffect(() => {
@@ -27,25 +26,52 @@ function App() {
       return () => clearInterval(timer);
     }
   }, [isSubmitted]);
+  const getTotal = () => {
+   
+    const valuesArray = Object.values(answers);
+   
+    const totalPoints = valuesArray.reduce((acc, curr) => {
+      let num = 0;
+      switch(curr) {
+        case "First Option":
+          num = 1;
+          break;
+        case "Second Option":
+          num = 2;
+          break;
+        case "Third Option":
+          num = 3;
+          break;
+        case "Fourth Option":
+          num = 4;
+          break;
+        default:
+          num = 0;
+          break;
+      }
+      
+      return acc + num;
+    }, 0);
+    // console.log(totalPoints)
+    return totalPoints;
+  };
 
   const handleNext = (next) => {
-    if(!answers[selectedOption]) {
-      setTotal((prev) => prev + selectedOption);
-    }
     
     if (currentQuestion >= questions.length) {
       setIsSubmitted(true);
 
       setCurrentQuestion(questions.length);
       setIsSelected(false);
+      setTotal(getTotal())
       return;
     }
     setCurrentQuestion(next);
     setIsSelected(false);
   };
-  const handleOption = (question, option, point) => {
+  const handleOption = (question, option) => {
     setIsSelected(true);
-    setSelectedOption(point);
+    // setSelectedOption(point);
 
     setAnswers((prev) => ({
       ...prev,

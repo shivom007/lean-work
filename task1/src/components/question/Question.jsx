@@ -26,15 +26,13 @@ const Question = ({
               question.options.map((option, index) => {
                 return (
                   <label
-                    onClick={() => handleOption(question.id, option, index + 1)}
+                    onClick={() => handleOption(question.id, option)}
                     htmlFor={`${index}`}
                     key={index}
                   >
                     {" "}
                     <input
-                      onChange={() =>
-                        handleOption(question.id, option, index + 1)
-                      }
+                      onChange={() => handleOption(question.id, option)}
                       checked={answer === option}
                       type="radio"
                       name={`${question.id}`}
@@ -56,18 +54,9 @@ const Question = ({
       >
         <button
           disabled={!answer}
+          className="next-btn"
           style={{
-            fontFamily: "Poppins",
-            fontWeight: 500,
-            fontSize: "16px",
-            height: "44px",
-            width: "184px",
-            border: "none",
-            backgroundColor: "#0F0F0F",
-            color: "white",
-            borderRadius: "6px",
             cursor: !answer ? "not-allowed" : "pointer",
-            // pointerEvents: !isSelected ? 'none':''
           }}
           onClick={() => handleNext(Number(question.id) + 1)}
         >
@@ -75,6 +64,7 @@ const Question = ({
         </button>
         {Number(question.id) > 1 && (
           <button
+            className="prev-btn"
             style={{
               fontFamily: "Poppins",
               fontWeight: 500,

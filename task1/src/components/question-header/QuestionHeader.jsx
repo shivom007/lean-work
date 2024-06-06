@@ -13,7 +13,7 @@ const QuestionHeader = ({ questionNumber, totalQuestions, remainingTime }) => {
                 <a href="#case-details">Case details</a>
             </div>
             <div className="timer">
-                ⏲ {remainingTime} <span> remaining</span>
+                ⏱ {remainingTime} <span> remaining</span>
             </div>
         </div>
     );
